@@ -1,5 +1,5 @@
 <?php
 
-echo "Clase Cleinte";
+echo "programa Cleinte";
 
   ?>
