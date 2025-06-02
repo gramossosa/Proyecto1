@@ -3,103 +3,103 @@ Theme Name: My Theme
 Author: Jules
 Description: A basic WordPress theme.
 Version: 1.0
+Tags: bootstrap
 */
 
-/* Reset default browser styles */
-body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
+/*
+    Basic WordPress Theme using Bootstrap 5.
+    Most base styling is handled by Bootstrap.
+    Add theme-specific styles below.
+*/
+
+/* Example: Custom link color */
+/*
+a {
+    color: #007bff;
+}
+a:hover {
+    color: #0056b3;
+}
+*/
+
+/* WordPress Core CSS Classes Alignment */
+.alignleft {
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;
 }
 
-body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-    padding: 20px;
-}
-
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-header h1 {
-    margin-bottom: 0;
-}
-
-nav ul {
-    padding: 0;
-    list-style: none;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.content {
-    margin-top: 20px;
-}
-
-article.post {
-    border-bottom: 1px #ccc dotted;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-article.post h2 {
-    margin-bottom: 10px;
-}
-
-article.post .meta {
-    font-size: 0.9em;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.sidebar {
+.alignright {
     float: right;
-    width: 30%;
-    margin-top: 20px;
-    padding: 15px;
-    background: #eee;
+    margin-left: 1.5em;
+    margin-bottom: 1.5em;
 }
 
-.sidebar h3 {
-    margin-bottom: 10px;
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em;
 }
 
-.sidebar ul {
-    list-style: none;
+/* Captions */
+.wp-caption {
+    max-width: 100%; /* Ensure it doesn't overflow */
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 0.5em;
+    margin-bottom: 1.5em;
 }
 
-.sidebar ul li a {
-    text-decoration: none;
-    color: #333;
+.wp-caption img {
+    margin-bottom: 0.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-footer {
+.wp-caption-text {
+    font-size: 0.9em;
     text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    background: #333;
-    color: #fff;
+    margin: 0;
 }
+
+/* Gallery */
+.gallery {
+    margin-bottom: 1.5em;
+}
+.gallery-item {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    margin: 0 0 1.5em;
+    padding: 0; /* Bootstrap might add padding, adjust if needed */
+}
+.gallery-columns-2 .gallery-item { max-width: 50%; }
+.gallery-columns-3 .gallery-item { max-width: 33.33%; }
+.gallery-columns-4 .gallery-item { max-width: 25%; }
+.gallery-columns-5 .gallery-item { max-width: 20%; }
+.gallery-columns-6 .gallery-item { max-width: 16.66%; }
+.gallery-columns-7 .gallery-item { max-width: 14.28%; }
+.gallery-columns-8 .gallery-item { max-width: 12.5%; }
+.gallery-columns-9 .gallery-item { max-width: 11.11%; }
+
+.gallery-caption {
+    display: block;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
+/* Make sure embeds and iframes are responsive */
+embed,
+iframe,
+object {
+    max-width: 100%;
+}
+
+/*
+    The main stylesheet (style.css) is best used for overriding Bootstrap,
+    or adding styles for elements not covered by Bootstrap.
+    For significant custom CSS, consider creating additional CSS files
+    and enqueuing them via functions.php.
+*/
