@@ -55,19 +55,5 @@
     <?php endif; ?>
 </aside>
 <?php
-// Basic walker for categories to add list-group-item class, if not using a plugin for this
-if (!class_exists('My_Theme_Category_Walker')) {
-    class My_Theme_Category_Walker extends Walker_Category {
-        function start_el(&$output, $category, $depth = 0, $args = array(), $id = 0) {
-            $output .= "<li class=\"list-group-item\">";
-            $output .= "<a href='" . esc_url(get_term_link($category)) . "'>";
-            $output .= esc_html($category->name);
-            $output .= ' (' . esc_html($category->count) . ')';
-            $output .= "</a>";
-        }
-        function end_el(&$output, $page, $depth = 0, $args = array()) {
-            $output .= "</li>";
-        }
-    }
-}
+// Custom category walker is now in functions.php
 ?>

@@ -53,4 +53,84 @@ function my_theme_add_editor_styles() {
 }
 add_action('admin_init', 'my_theme_add_editor_styles');
 
+// Custom Walker for Bootstrap 5 styled comments
+if (!class_exists('My_Theme_Bootstrap_Comment_Walker')) {
+    class My_Theme_Bootstrap_Comment_Walker extends Walker_Comment {
+        protected function html5_comment( $comment, $depth, $args ) {
+            $tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+            ?>
+            <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent media mb-3' : 'media mb-3', $comment ); ?>>
+                <article id="div-comment-<?php comment_ID(); ?>" class="comment-body d-flex">
+                    <?php if ( 0 != $args['avatar_size'] ) : ?>
+                    <div class="flex-shrink-0 me-3">
+                        <?php echo get_avatar( $comment, $args['avatar_size'], '', '', array('class' => 'img-fluid rounded-circle') ); ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="comment-content media-body">
+                        <div class="comment-meta d-flex justify-content-between">
+                            <div class="comment-author vcard">
+                                <?php printf( '<b class="fn">%s</b> <span class="says visually-hidden">says:</span>', get_comment_author_link( $comment ) ); ?>
+                            </div><!-- .comment-author -->
+
+                            <div class="comment-metadata">
+                                <a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>" class="text-muted small">
+                                    <time datetime="<?php comment_time( 'c' ); ?>">
+                                        <?php
+                                            /* translators: 1: date, 2: time */
+                                            printf( esc_html__( '%1$s at %2$s', 'my-theme' ), get_comment_date( '', $comment ), get_comment_time() );
+                                        ?>
+                                    </time>
+                                </a>
+                                <?php edit_comment_link( esc_html__( 'Edit', 'my-theme' ), '<span class="edit-link ms-2 small">', '</span>' ); ?>
+                            </div><!-- .comment-metadata -->
+                        </div><!-- .comment-meta -->
+
+
+                        <?php if ( '0' == $comment->comment_approved ) : ?>
+                        <p class="comment-awaiting-moderation alert alert-info small mt-2"><?php esc_html_e( 'Your comment is awaiting moderation.', 'my-theme' ); ?></p>
+                        <?php endif; ?>
+
+                        <div class="comment-text mt-2">
+                            <?php comment_text(); ?>
+                        </div><!-- .comment-text -->
+
+                        <?php
+                        comment_reply_link(
+                            array_merge(
+                                $args,
+                                array(
+                                    'add_below' => 'div-comment',
+                                    'depth'     => $depth,
+                                    'max_depth' => $args['max_depth'],
+                                    'before'    => '<div class="reply mt-2 small">',
+                                    'after'     => '</div>',
+                                    'class'     => 'btn btn-sm btn-outline-secondary'
+                                )
+                            )
+                        );
+                        ?>
+                    </div><!-- .comment-content -->
+                </article><!-- .comment-body -->
+            <?php
+        }
+    }
+}
+
+// Basic walker for categories to add list-group-item class, if not using a plugin for this
+if (!class_exists('My_Theme_Category_Walker')) {
+    class My_Theme_Category_Walker extends Walker_Category {
+        function start_el(&$output, $category, $depth = 0, $args = array(), $id = 0) {
+            $output .= "<li class=\"list-group-item\">";
+            $output .= "<a href='" . esc_url(get_term_link($category)) . "'>";
+            $output .= esc_html($category->name);
+            $output .= ' (' . esc_html($category->count) . ')';
+            $output .= "</a>";
+        }
+        function end_el(&$output, $page, $depth = 0, $args = array()) {
+            $output .= "</li>";
+        }
+    }
+}
+
 ?>
