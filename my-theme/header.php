@@ -8,7 +8,32 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header class="bg-light site-header">
+
+    <div class="top-bar-header bg-dark text-white py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <a class="navbar-brand text-white" href="<?php echo esc_url(home_url('/')); ?>">Logo 1 (Top)</a>
+                </div>
+                <div class="col-md-8">
+                    <div class="text-md-end mb-2">Logo 2 (Top Right)</div>
+                    <form role="search" method="get" class="search-form-top input-group input-group-sm mb-2" action="<?php echo esc_url(home_url('/')); ?>">
+                        <label class="visually-hidden" for="top-search-form"><?php _e('Search for:', 'my-theme'); ?></label>
+                        <input type="search" id="top-search-form" class="form-control" placeholder="<?php esc_attr_e('Search &hellip;', 'my-theme'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+                        <button type="submit" class="btn btn-primary"><?php esc_html_e('Search', 'my-theme'); ?></button>
+                    </form>
+                    <div class="social-icons-top text-md-end">
+                        <a href="#" class="text-white me-2">IG</a>
+                        <a href="#" class="text-white me-2">FB</a>
+                        <a href="#" class="text-white me-2">YT</a>
+                        <a href="#" class="text-white">TW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-light main-navigation-header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="<?php esc_attr_e('Primary Navigation', 'my-theme'); ?>">
             <div class="container">
                 <?php
