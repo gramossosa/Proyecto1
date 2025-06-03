@@ -6,6 +6,139 @@ Version: 1.0
 Tags: bootstrap
 */
 
+:root {
+    --edenorte-azul-edenorte: #0033A0;
+    --edenorte-azul-claro: #0072CE;
+    --edenorte-blanco: #FFFFFF;
+    --edenorte-gris-claro: #F5F5F5;
+    --edenorte-texto: #2C2C2C;
+
+    /* Bootstrap theme color overrides */
+    --bs-primary: var(--edenorte-azul-edenorte);
+    --bs-secondary: var(--edenorte-azul-claro);
+    --bs-light: var(--edenorte-gris-claro);
+    --bs-body-color: var(--edenorte-texto);
+    --bs-body-bg: var(--edenorte-blanco);
+    --bs-link-color: var(--edenorte-azul-claro);
+    --bs-link-hover-color: var(--edenorte-azul-edenorte);
+    --bs-navbar-color: rgba(var(--edenorte-blanco), 0.75); /* Lighter text for navbar links */
+    --bs-navbar-hover-color: var(--edenorte-blanco);
+    --bs-navbar-active-color: var(--edenorte-blanco);
+    --bs-navbar-brand-color: var(--edenorte-blanco);
+}
+
+body {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+}
+
+/* Links - Bootstrap typically handles this via --bs-link-color, but for non-BS elements: */
+a {
+    color: var(--bs-link-color);
+}
+
+a:hover, a:focus {
+    color: var(--bs-link-hover-color);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--edenorte-azul-edenorte); /* Dark blue for headings */
+}
+
+/* Navbar */
+/* header.php uses navbar-light bg-light by default. We'll override bg-light */
+.bg-light { /* Overriding Bootstrap's .bg-light for our specific header/footer use */
+    background-color: var(--edenorte-gris-claro) !important; /* Or var(--bs-light) if preferred */
+}
+
+header.bg-light .navbar-brand,
+header.bg-light .nav-link {
+     color: var(--edenorte-azul-edenorte); /* Dark blue text on light gray background */
+}
+
+header.bg-light .nav-link:hover,
+header.bg-light .nav-link:focus,
+header.bg-light .navbar-brand:hover,
+header.bg-light .navbar-brand:focus {
+    color: var(--edenorte-azul-claro); /* Lighter blue for hover */
+}
+
+header.bg-light .navbar-toggler {
+    border-color: rgba(0,0,0,.1);
+}
+header.bg-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 51, 160, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* Alternative: Dark Navbar Example (If you change header.php to use .navbar-dark .bg-primary) */
+/*
+.navbar.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+.navbar.navbar-dark .navbar-brand,
+.navbar.navbar-dark .nav-link {
+    color: var(--edenorte-blanco);
+}
+.navbar.navbar-dark .nav-link:hover,
+.navbar.navbar-dark .nav-link:focus {
+    color: rgba(var(--edenorte-blanco), 0.85);
+}
+.navbar.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+*/
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--edenorte-blanco); /* Ensure text is white for contrast */
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #00277e; /* Darken primary blue on hover */
+    border-color: #00277e;
+    color: var(--edenorte-blanco);
+}
+
+.btn-secondary {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--edenorte-blanco); /* Ensure text is white for contrast */
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #005bb5; /* Darken secondary blue on hover */
+    border-color: #005bb5;
+    color: var(--edenorte-blanco);
+}
+
+/* Widget Titles (Sidebar) */
+.widget .card-header {
+    background-color: var(--edenorte-azul-edenorte);
+    color: var(--edenorte-blanco);
+}
+.widget .card-header h3, .widget .card-header .widget-title { /* h5 in our case from functions.php */
+    color: var(--edenorte-blanco);
+    margin-bottom: 0;
+}
+
+/* Footer */
+/* footer.php uses .bg-light currently */
+footer.bg-light {
+    /* bg-light already defined above to use --edenorte-gris-claro */
+    color: var(--edenorte-texto); /* Ensure text has good contrast on light gray */
+}
+
+footer.bg-light a { /* If any links in footer */
+    color: var(--edenorte-azul-edenorte);
+}
+footer.bg-light a:hover, footer.bg-light a:focus {
+    color: var(--edenorte-azul-claro);
+}
+
 /*
     Basic WordPress Theme using Bootstrap 5.
     Most base styling is handled by Bootstrap.

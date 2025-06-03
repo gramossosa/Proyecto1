@@ -11,17 +11,26 @@
                             </a>
                         <?php endif; ?>
                         <div class="card-body">
-                            <h2 class="card-title h4"><a href="<?php the_permalink(); ?>" class="text-decoration-none"><?php the_title(); ?></a></h2>
+                            <?php the_title(sprintf('<h2 class="card-title h4"><a href="%s" class="text-decoration-none">', esc_url(get_permalink())), '</a></h2>'); ?>
                             <p class="card-subtitle mb-2 text-muted small">
                                 Posted on <?php the_time('F j, Y'); ?> by <?php the_author_posts_link(); ?>
                                 <?php if (has_category()) : ?>
                                     | Categories: <?php the_category(', '); ?>
                                 <?php endif; ?>
+                                <?php if (get_edit_post_link()) : ?>
+                                    | <?php edit_post_link(__('Edit', 'my-theme'), '<span class="edit-link">', '</span>'); ?>
+                                <?php endif; ?>
                             </p>
                             <div class="card-text">
-                                <?php the_excerpt(); // Or the_content(); for full content ?>
+                                <?php the_excerpt(); ?>
                             </div>
-                            <a href="<?php the_permalink(); ?>" class="btn btn-primary btn-sm">Read More &raquo;</a>
+                            <a href="<?php the_permalink(); ?>" class="btn btn-primary btn-sm">
+                                <?php printf(
+                                    /* translators: %s: Name of current post. */
+                                    wp_kses(__('Read More <span class="visually-hidden">about %s</span>&raquo;', 'my-theme'), array('span' => array('class' => array()))),
+                                    get_the_title()
+                                ); ?>
+                            </a>
                         </div>
                     </article>
                 <?php endwhile; ?>
