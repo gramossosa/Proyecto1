@@ -3,10 +3,11 @@
 <div class="container mt-4">
     <div class="row">
         <main class="col-md-8">
-            <?php if (have_posts()) : ?>
-                <?php while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('mb-5'); ?>>
-                        <header class="entry-header mb-4">
+            <div class="main-content p-4">
+                <?php if (have_posts()) : ?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <article id="post-<?php the_ID(); ?>" <?php post_class('mb-5'); ?>>
+                            <header class="entry-header mb-4">
                             <?php the_title('<h1 class="entry-title display-5">', '</h1>'); ?>
                             <p class="entry-meta text-muted small">
                                 Posted on <?php the_time('F j, Y'); ?> by <?php the_author_posts_link(); ?>
@@ -58,6 +59,7 @@
             <?php else : ?>
                 <p><?php _e('Sorry, no post matched your criteria.', 'my-theme'); ?></p>
             <?php endif; ?>
+            </div>
         </main>
 
         <aside class="col-md-4">
